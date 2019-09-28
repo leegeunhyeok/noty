@@ -16,4 +16,5 @@ npm i
 ```bash
 cd src/prisma
 docker-compose up -d
+prisma deploy
 ```
