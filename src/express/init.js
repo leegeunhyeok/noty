@@ -30,7 +30,9 @@ const bodyParser = require('body-parser')
 
 exports.init = app => {
   // Middleware
-  app.use(cors())
+  if (process.env.NODE_ENV) {
+    app.use(cors())
+  }
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
