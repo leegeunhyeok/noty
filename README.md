@@ -14,5 +14,6 @@ npm i
 
 - Prisma
 ```bash
-docker-compose up -d src/prisma/docker-compose.yml
+cd src/prisma
+docker-compose up -d
 ```
