@@ -66,7 +66,7 @@ const server = new GraphQLServer({
 // Express server init
 init(server.express)
 server.start({
-  PORT,
+  port: PORT,
   endpoint: '/graphql',
   playground: '/playground',
-}, () => console.log(`Server is running on ${PORT} port`))
+}, _ => console.log(`Server is running on ${PORT} port`))
