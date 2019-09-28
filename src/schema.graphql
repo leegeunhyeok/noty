@@ -1,0 +1,72 @@
+type Query {
+  currentUser: User!
+}
+
+type Mutation {
+  register(username: String!, password: String!): User!
+  login(username: String!, password: String!): LoginResponse!
+}
+
+#========== Other ==========#
+scalar DateTime
+
+enum Grade {
+  DEFAULT_USER
+  PREMIUM_USER
+}
+
+#========== User ==========#
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  salt: String!
+  grade: Grade!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  notes: [Note!]!
+  tags: [Tag!]!
+  todos: [Todo!]!
+}
+
+type LoginResponse {
+  token: String
+  user: User
+}
+
+
+#========== Note ==========#
+type Note {
+  id: ID!
+  user: User!
+  title: String!
+  content: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+
+#========== Tag ==========#
+type Tag {
+  id: ID!
+  user: User!
+  name: String!
+  color: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  todos: [Todo!]!
+}
+
+
+#========== Todo ==========#
+type Todo {
+  id: ID!
+  user: User!
+  tag: Tag!
+  index: Int!
+  done: Boolean!
+  content: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
