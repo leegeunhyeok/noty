@@ -24,49 +24,16 @@ SOFTWARE.
 
 */
 
-const { GraphQLServer } = require('graphql-yoga')
-const { prisma } = require('./src/prisma/generated/prisma-client')
-const { init } = require('./src/express/init')
-const resolvers = require('./src/resolvers')
-
+const { NotyServer } = require('./src/server')
 const config = require('config')
-const jwt = require('jsonwebtoken')
-
 const PORT = config.get('port')
 
-const getUser = token => {
-  try {
-    if (token) {
-      return jwt.verify(token, 'secret')
-    }
-    return null
-  } catch (err) {
-    return null
-  }
-}
-
-const server = new GraphQLServer({
-  typeDefs: './src/schema.graphql',
-  resolvers,
-  resolverValidationOptions :{
-    requireResolversForResolveType: false
-  },
-  context: ({ request }) => {
-    const tokenWithBearer = request.headers.authorization || ''
-    const token = tokenWithBearer.split(' ')[1]
-    const user = getUser(token)
-
-    return {
-      user,
-      prisma
-    }
-  }
-})
-
-// Express server init
-init(server.express)
-server.start({
-  port: PORT,
-  endpoint: '/graphql',
-  playground: '/playground',
-}, _ => console.log(`Server is running on ${PORT} port`))
+const server = new NotyServer()
+server
+  .createServer()
+  .initExpress()
+  .start({
+    port: PORT,
+    endpoint: '/graphql',
+    playground: '/playground'
+  }, _ => console.log(`Server is running on ${PORT} port`))
