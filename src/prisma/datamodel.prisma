@@ -1,4 +1,48 @@
 type User {
   id: ID! @id
   name: String!
+  email: String!
+  password: String!
+  salt: String!
+  grade: Grade! @default(value: DEFAULT_USER)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime @updatedAt
+  notes: [Note!]! @relation(link: INLINE, name: "NoteByUser")
+  tags: [Tag!]! @relation(link: INLINE, name: "TagByUser")
+  todos: [Todo!]! @relation(link: INLINE, name: "TodoByUser")
+}
+
+type Note {
+  id: ID! @id
+  user: User! @relation(name: "NoteByUser")
+  title: String!
+  content: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime @updatedAt
+}
+
+type Tag {
+  id: ID! @id
+  user: User! @relation(name: "TagByUser")
+  name: String!
+  color: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime @updatedAt
+  todos: [Todo!]! @relation(link: INLINE, name: "TodoByTag")
+}
+
+type Todo {
+  id: ID! @id,
+  user: User! @relation(name: "TodoByUser")
+  tag: Tag! @relation(name: "TodoByTag")
+  index: Int!
+  done: Boolean! @default(value: false)
+  content: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime @updatedAt
+}
+
+enum Grade {
+  DEFAULT_USER
+  PREMIUM_USER
 }
