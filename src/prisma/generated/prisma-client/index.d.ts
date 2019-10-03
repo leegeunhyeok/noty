@@ -962,6 +962,7 @@ export interface UserUpsertWithoutTodosInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  userId?: Maybe<String>;
 }>;
 
 export interface TodoUpsertWithWhereUniqueWithoutTagInput {

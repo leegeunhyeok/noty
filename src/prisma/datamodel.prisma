@@ -1,6 +1,6 @@
 type User {
   id: ID! @id
-  userId: String!
+  userId: String! @unique
   name: String!
   email: String!
   password: String!
