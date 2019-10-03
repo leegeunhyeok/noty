@@ -64,9 +64,9 @@ module.exports = {
       })
       return user
     },
-    login: async (_parent, { name, password }, ctx) => {
-      // Find user by username
-      const user = await ctx.prisma.user({ name })
+    login: async (_parent, { userId, password }, ctx) => {
+      // Find user by userId
+      const user = await ctx.prisma.user({ userId })
     
       if (!user) {
         throw new Error('Invalid Login')
