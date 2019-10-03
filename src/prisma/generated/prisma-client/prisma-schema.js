@@ -953,6 +953,7 @@ input TodoWhereUniqueInput {
 
 type User {
   id: ID!
+  userId: String!
   name: String!
   email: String!
   password: String!
@@ -972,6 +973,7 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
+  userId: String!
   name: String!
   email: String!
   password: String!
@@ -998,6 +1000,7 @@ input UserCreateOneWithoutTodosInput {
 
 input UserCreateWithoutNotesInput {
   id: ID
+  userId: String!
   name: String!
   email: String!
   password: String!
@@ -1008,6 +1011,7 @@ input UserCreateWithoutNotesInput {
 
 input UserCreateWithoutTagsInput {
   id: ID
+  userId: String!
   name: String!
   email: String!
   password: String!
@@ -1018,6 +1022,7 @@ input UserCreateWithoutTagsInput {
 
 input UserCreateWithoutTodosInput {
   id: ID
+  userId: String!
   name: String!
   email: String!
   password: String!
@@ -1034,6 +1039,8 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  userId_ASC
+  userId_DESC
   name_ASC
   name_DESC
   email_ASC
@@ -1050,6 +1057,7 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
+  userId: String!
   name: String!
   email: String!
   password: String!
@@ -1075,6 +1083,7 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
+  userId: String
   name: String
   email: String
   password: String
@@ -1085,6 +1094,7 @@ input UserUpdateInput {
 }
 
 input UserUpdateManyMutationInput {
+  userId: String
   name: String
   email: String
   password: String
@@ -1113,6 +1123,7 @@ input UserUpdateOneRequiredWithoutTodosInput {
 }
 
 input UserUpdateWithoutNotesDataInput {
+  userId: String
   name: String
   email: String
   password: String
@@ -1122,6 +1133,7 @@ input UserUpdateWithoutNotesDataInput {
 }
 
 input UserUpdateWithoutTagsDataInput {
+  userId: String
   name: String
   email: String
   password: String
@@ -1131,6 +1143,7 @@ input UserUpdateWithoutTagsDataInput {
 }
 
 input UserUpdateWithoutTodosDataInput {
+  userId: String
   name: String
   email: String
   password: String
@@ -1169,6 +1182,20 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
