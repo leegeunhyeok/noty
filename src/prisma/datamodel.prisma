@@ -3,7 +3,6 @@ type User {
   name: String!
   email: String!
   password: String!
-  salt: String!
   grade: Grade! @default(value: DEFAULT_USER)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime @updatedAt

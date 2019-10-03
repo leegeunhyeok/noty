@@ -956,7 +956,6 @@ type User {
   name: String!
   email: String!
   password: String!
-  salt: String!
   grade: Grade!
   createdAt: DateTime!
   updatedAt: DateTime
@@ -976,7 +975,6 @@ input UserCreateInput {
   name: String!
   email: String!
   password: String!
-  salt: String!
   grade: Grade
   notes: NoteCreateManyWithoutUserInput
   tags: TagCreateManyWithoutUserInput
@@ -1003,7 +1001,6 @@ input UserCreateWithoutNotesInput {
   name: String!
   email: String!
   password: String!
-  salt: String!
   grade: Grade
   tags: TagCreateManyWithoutUserInput
   todos: TodoCreateManyWithoutUserInput
@@ -1014,7 +1011,6 @@ input UserCreateWithoutTagsInput {
   name: String!
   email: String!
   password: String!
-  salt: String!
   grade: Grade
   notes: NoteCreateManyWithoutUserInput
   todos: TodoCreateManyWithoutUserInput
@@ -1025,7 +1021,6 @@ input UserCreateWithoutTodosInput {
   name: String!
   email: String!
   password: String!
-  salt: String!
   grade: Grade
   notes: NoteCreateManyWithoutUserInput
   tags: TagCreateManyWithoutUserInput
@@ -1045,8 +1040,6 @@ enum UserOrderByInput {
   email_DESC
   password_ASC
   password_DESC
-  salt_ASC
-  salt_DESC
   grade_ASC
   grade_DESC
   createdAt_ASC
@@ -1060,7 +1053,6 @@ type UserPreviousValues {
   name: String!
   email: String!
   password: String!
-  salt: String!
   grade: Grade!
   createdAt: DateTime!
   updatedAt: DateTime
@@ -1086,7 +1078,6 @@ input UserUpdateInput {
   name: String
   email: String
   password: String
-  salt: String
   grade: Grade
   notes: NoteUpdateManyWithoutUserInput
   tags: TagUpdateManyWithoutUserInput
@@ -1097,7 +1088,6 @@ input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
-  salt: String
   grade: Grade
 }
 
@@ -1126,7 +1116,6 @@ input UserUpdateWithoutNotesDataInput {
   name: String
   email: String
   password: String
-  salt: String
   grade: Grade
   tags: TagUpdateManyWithoutUserInput
   todos: TodoUpdateManyWithoutUserInput
@@ -1136,7 +1125,6 @@ input UserUpdateWithoutTagsDataInput {
   name: String
   email: String
   password: String
-  salt: String
   grade: Grade
   notes: NoteUpdateManyWithoutUserInput
   todos: TodoUpdateManyWithoutUserInput
@@ -1146,7 +1134,6 @@ input UserUpdateWithoutTodosDataInput {
   name: String
   email: String
   password: String
-  salt: String
   grade: Grade
   notes: NoteUpdateManyWithoutUserInput
   tags: TagUpdateManyWithoutUserInput
@@ -1224,20 +1211,6 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
-  salt: String
-  salt_not: String
-  salt_in: [String!]
-  salt_not_in: [String!]
-  salt_lt: String
-  salt_lte: String
-  salt_gt: String
-  salt_gte: String
-  salt_contains: String
-  salt_not_contains: String
-  salt_starts_with: String
-  salt_not_starts_with: String
-  salt_ends_with: String
-  salt_not_ends_with: String
   grade: Grade
   grade_not: Grade
   grade_in: [Grade!]

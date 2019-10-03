@@ -3,7 +3,12 @@ type Query {
 }
 
 type Mutation {
-  register(username: String!, password: String!): User!
+  register(
+    id: ID!,
+    name: String!,
+    email: String!,
+    password: String!
+  ): User!
   login(username: String!, password: String!): LoginResponse!
 }
 
@@ -21,7 +26,6 @@ type User {
   name: String!
   email: String!
   password: String!
-  salt: String!
   grade: Grade!
   createdAt: DateTime!
   updatedAt: DateTime

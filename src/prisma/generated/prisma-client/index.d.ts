@@ -267,8 +267,6 @@ export type UserOrderByInput =
   | "email_DESC"
   | "password_ASC"
   | "password_DESC"
-  | "salt_ASC"
-  | "salt_DESC"
   | "grade_ASC"
   | "grade_DESC"
   | "createdAt_ASC"
@@ -352,20 +350,6 @@ export interface UserWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
-  salt?: Maybe<String>;
-  salt_not?: Maybe<String>;
-  salt_in?: Maybe<String[] | String>;
-  salt_not_in?: Maybe<String[] | String>;
-  salt_lt?: Maybe<String>;
-  salt_lte?: Maybe<String>;
-  salt_gt?: Maybe<String>;
-  salt_gte?: Maybe<String>;
-  salt_contains?: Maybe<String>;
-  salt_not_contains?: Maybe<String>;
-  salt_starts_with?: Maybe<String>;
-  salt_not_starts_with?: Maybe<String>;
-  salt_ends_with?: Maybe<String>;
-  salt_not_ends_with?: Maybe<String>;
   grade?: Maybe<Grade>;
   grade_not?: Maybe<Grade>;
   grade_in?: Maybe<Grade[] | Grade>;
@@ -396,7 +380,6 @@ export interface UserUpdateWithoutTodosDataInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  salt?: Maybe<String>;
   grade?: Maybe<Grade>;
   notes?: Maybe<NoteUpdateManyWithoutUserInput>;
   tags?: Maybe<TagUpdateManyWithoutUserInput>;
@@ -519,7 +502,6 @@ export interface UserCreateWithoutTagsInput {
   name: String;
   email: String;
   password: String;
-  salt: String;
   grade?: Maybe<Grade>;
   notes?: Maybe<NoteCreateManyWithoutUserInput>;
   todos?: Maybe<TodoCreateManyWithoutUserInput>;
@@ -544,7 +526,6 @@ export interface UserUpdateInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  salt?: Maybe<String>;
   grade?: Maybe<Grade>;
   notes?: Maybe<NoteUpdateManyWithoutUserInput>;
   tags?: Maybe<TagUpdateManyWithoutUserInput>;
@@ -568,7 +549,6 @@ export interface UserUpdateWithoutNotesDataInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  salt?: Maybe<String>;
   grade?: Maybe<Grade>;
   tags?: Maybe<TagUpdateManyWithoutUserInput>;
   todos?: Maybe<TodoUpdateManyWithoutUserInput>;
@@ -623,7 +603,6 @@ export interface UserUpdateWithoutTagsDataInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  salt?: Maybe<String>;
   grade?: Maybe<Grade>;
   notes?: Maybe<NoteUpdateManyWithoutUserInput>;
   todos?: Maybe<TodoUpdateManyWithoutUserInput>;
@@ -933,7 +912,6 @@ export interface UserUpdateManyMutationInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  salt?: Maybe<String>;
   grade?: Maybe<Grade>;
 }
 
@@ -1040,7 +1018,6 @@ export interface UserCreateWithoutNotesInput {
   name: String;
   email: String;
   password: String;
-  salt: String;
   grade?: Maybe<Grade>;
   tags?: Maybe<TagCreateManyWithoutUserInput>;
   todos?: Maybe<TodoCreateManyWithoutUserInput>;
@@ -1226,7 +1203,6 @@ export interface UserCreateWithoutTodosInput {
   name: String;
   email: String;
   password: String;
-  salt: String;
   grade?: Maybe<Grade>;
   notes?: Maybe<NoteCreateManyWithoutUserInput>;
   tags?: Maybe<TagCreateManyWithoutUserInput>;
@@ -1252,7 +1228,6 @@ export interface UserCreateInput {
   name: String;
   email: String;
   password: String;
-  salt: String;
   grade?: Maybe<Grade>;
   notes?: Maybe<NoteCreateManyWithoutUserInput>;
   tags?: Maybe<TagCreateManyWithoutUserInput>;
@@ -1276,7 +1251,6 @@ export interface UserPreviousValues {
   name: String;
   email: String;
   password: String;
-  salt: String;
   grade: Grade;
   createdAt: DateTimeOutput;
   updatedAt?: DateTimeOutput;
@@ -1289,7 +1263,6 @@ export interface UserPreviousValuesPromise
   name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  salt: () => Promise<String>;
   grade: () => Promise<Grade>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -1302,7 +1275,6 @@ export interface UserPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
-  salt: () => Promise<AsyncIterator<String>>;
   grade: () => Promise<AsyncIterator<Grade>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -1502,7 +1474,6 @@ export interface User {
   name: String;
   email: String;
   password: String;
-  salt: String;
   grade: Grade;
   createdAt: DateTimeOutput;
   updatedAt?: DateTimeOutput;
@@ -1513,7 +1484,6 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  salt: () => Promise<String>;
   grade: () => Promise<Grade>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -1553,7 +1523,6 @@ export interface UserSubscription
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
-  salt: () => Promise<AsyncIterator<String>>;
   grade: () => Promise<AsyncIterator<Grade>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -1593,7 +1562,6 @@ export interface UserNullablePromise
   name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  salt: () => Promise<String>;
   grade: () => Promise<Grade>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
