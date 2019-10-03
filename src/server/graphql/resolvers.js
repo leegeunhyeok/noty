@@ -47,10 +47,14 @@ module.exports = {
   },
   Mutation: {
     checkUserIdExist: async (_parent, { userId }, ctx) => {
+      // Check userId is exist
       return !!await ctx.prisma.user({ userId })
     },
     register: async (_parent, { userId, name, email, password }, ctx) => {
+      // Password hasing
       const hashedPassword = await bcrypt.hash(password, 10)
+
+      // Insert user data to DB
       const user = await ctx.prisma.createUser({
         userId,
         name,
@@ -60,32 +64,30 @@ module.exports = {
       })
       return user
     },
-    login: async (_parent, { username, password }, ctx) => {
-      const user = await ctx.prisma.user({ username })
+    login: async (_parent, { name, password }, ctx) => {
+      // Find user by username
+      const user = await ctx.prisma.user({ name })
     
       if (!user) {
         throw new Error('Invalid Login')
       }
-    
+      
+      // Password compare
       const passwordMatch = await bcrypt.compare(password, user.password)
     
       if (!passwordMatch) {
         throw new Error('Invalid Login')
       }
     
-      const token = jwt.sign(
-        {
-          id: user.id,
-          username: user.email
-        },
-        'secret',
-        { expiresIn: '1d' }
-      )
+      // Token issuance
+      const token = jwt.sign({
+        id: user.id,
+        username: user.email
+      }, 'secret', { // TODO: Generate random value
+        expiresIn: '1d'
+      })
 
-      return {
-        token,
-        user
-      }
+      return { token, user }
     }
   },
   User: {
