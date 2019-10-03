@@ -13,7 +13,7 @@ type Mutation {
     email: String!,
     password: String!
   ): User!
-  login(name: String!, password: String!): LoginResponse!,
+  login(userId: String!, password: String!): LoginResponse!
 }
 
 #========== Other ==========#
