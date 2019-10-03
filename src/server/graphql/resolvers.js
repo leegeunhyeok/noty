@@ -34,14 +34,29 @@ module.exports = {
         throw new Error('Not Authenticated')
       }
       return prisma.user({ id: user.id })
+    },
+    userNote: async (_parent, { userId }, ctx) => {
+      return await ctx.prisma.user({ userId }).notes()
+    },
+    userTag: async (_parent, { userId }, ctx) => {
+      return await ctx.prisma.user({ userId }).tags()
+    },
+    userTodo: async (_parent, { userId }, ctx) => {
+      return await ctx.prisma.user({ userId }).todos()
     }
   },
   Mutation: {
-    register: async (_parent, { username, password }, ctx) => {
+    checkUserIdExist: async (_parent, { userId }, ctx) => {
+      return !!await ctx.prisma.user({ userId })
+    },
+    register: async (_parent, { userId, name, email, password }, ctx) => {
       const hashedPassword = await bcrypt.hash(password, 10)
       const user = await ctx.prisma.createUser({
-        username,
-        password: hashedPassword
+        userId,
+        name,
+        email,
+        password: hashedPassword,
+        grade: 'DEFAULT_USER'
       })
       return user
     },
@@ -74,13 +89,32 @@ module.exports = {
     }
   },
   User: {
+    notes: ({ id }, _args, context) => {
+      return context.prisma.User({ id }).notes()
+    },
+    tags: ({ id }, _args, context) => {
+      return context.prisma.User({ id }).tags()
+    },
     todos: ({ id }, _args, context) => {
       return context.prisma.User({ id }).todos()
     }
   },
-  Todo: {
+  Note: {
     user: ({ id }, _args, context) => {
-      return context.prisma.Todo({ id }).user()
+      return context.prisma.Note({ id }).user()
+    }
+  },
+  Tag: {
+    user: ({ id }, _args, context) => {
+      return context.prisma.Tag({ id }).user()
+    },
+    todos: ({ id }, _args, context) => {
+      return context.prisma.Tag({ id }).todos()
+    }
+  },
+  Todo: {
+    tag: ({ id }, _args, context) => {
+      return context.prisma.Todo({ id }).tag()
     }
   }
 }

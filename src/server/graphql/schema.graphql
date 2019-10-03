@@ -1,15 +1,17 @@
 type Query {
-  currentUser: User!
+  currentUser: User!,
+  userTodo(userId: String!): [Todo!]
 }
 
 type Mutation {
+  checkUserIdExist(userId: String!): Boolean,
   register(
     userId: String!,
     name: String!,
     email: String!,
     password: String!
   ): User!
-  login(username: String!, password: String!): LoginResponse!
+  login(name: String!, password: String!): LoginResponse!,
 }
 
 #========== Other ==========#
@@ -36,8 +38,8 @@ type User {
 }
 
 type LoginResponse {
-  token: String
-  user: User
+  token: String!
+  user: User!
 }
 
 
