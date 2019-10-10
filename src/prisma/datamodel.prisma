@@ -2,7 +2,7 @@ type User {
   id: ID! @id
   userId: String! @unique
   name: String!
-  email: String!
+  email: String! @unique
   password: String!
   grade: Grade! @default(value: DEFAULT_USER)
   createdAt: DateTime! @createdAt
