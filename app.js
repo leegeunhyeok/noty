@@ -37,4 +37,4 @@ server
     port: PORT,
     endpoint: '/graphql',
     playground: '/playground'
-  }, _ => log.info(`Server is running on ${PORT} port`))
+  }, _ => log.success(`Server is running on ${PORT} port`))

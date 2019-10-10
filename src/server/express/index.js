@@ -24,14 +24,17 @@ SOFTWARE.
 
 */
 
+const { log } = require('../logger')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 exports.init = app => {
+  log.info('Express Server Initializing..')
   // Middleware
-  if (process.env.NODE_ENV) {
+  if (process.env.NODE_ENV === 'development') {
     app.use(cors())
+    log.warning('[DEV] CORS Option activated')
   }
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ extended: false }))
