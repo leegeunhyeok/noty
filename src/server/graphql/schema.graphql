@@ -1,12 +1,13 @@
 type Query {
-  currentUser: User!,
-  userNote(userId: String!): [Note!],
-  userTag(userId: String!): [Tag!],
+  currentUser: User!
+  userNote(userId: String!): [Note!]
+  userTag(userId: String!): [Tag!]
   userTodo(userId: String!): [Todo!]
 }
 
 type Mutation {
-  checkUserIdExist(userId: String!): Boolean,
+  checkUserIdExist(userId: String!): Boolean
+  checkUserEmailExist(email: String!): Boolean
   register(
     userId: String!,
     name: String!,
@@ -14,6 +15,15 @@ type Mutation {
     password: String!
   ): User!
   login(userId: String!, password: String!): LoginResponse!
+  createNote(title: String!, content: String!): Note!
+  updateNote(noteId: ID!, title: String!, content: String!): Note!
+  deleteNote(noteId: ID!): Boolean!
+  createTag(name: String!, color: String!): Tag!
+  updateTag(tagId: ID!, name: String!, color: String!): Tag!
+  deleteTag(tagId: ID!): Boolean!
+  createTodo(content: String!, tagId: ID!): Todo!
+  updateTodo(todoId: ID!, content: String!, tagId: ID!, done: Boolean!): Todo!
+  deleteTodo(todoId: ID!): Boolean!
 }
 
 #========== Other ==========#
@@ -27,11 +37,12 @@ enum Grade {
 #========== User ==========#
 type User {
   id: ID!
-  userId: String!,
+  userId: String!
   name: String!
   email: String!
   password: String!
   grade: Grade!
+  index: Int!
   createdAt: DateTime!
   updatedAt: DateTime
   notes: [Note!]!
