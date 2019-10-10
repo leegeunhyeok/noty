@@ -271,6 +271,8 @@ export type UserOrderByInput =
   | "password_DESC"
   | "grade_ASC"
   | "grade_DESC"
+  | "index_ASC"
+  | "index_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -292,6 +294,367 @@ export interface UserUpdateOneRequiredWithoutTodosInput {
   create?: Maybe<UserCreateWithoutTodosInput>;
   update?: Maybe<UserUpdateWithoutTodosDataInput>;
   upsert?: Maybe<UserUpsertWithoutTodosInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface NoteWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  user?: Maybe<UserWhereInput>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  content?: Maybe<String>;
+  content_not?: Maybe<String>;
+  content_in?: Maybe<String[] | String>;
+  content_not_in?: Maybe<String[] | String>;
+  content_lt?: Maybe<String>;
+  content_lte?: Maybe<String>;
+  content_gt?: Maybe<String>;
+  content_gte?: Maybe<String>;
+  content_contains?: Maybe<String>;
+  content_not_contains?: Maybe<String>;
+  content_starts_with?: Maybe<String>;
+  content_not_starts_with?: Maybe<String>;
+  content_ends_with?: Maybe<String>;
+  content_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<NoteWhereInput[] | NoteWhereInput>;
+}
+
+export interface UserUpdateWithoutTodosDataInput {
+  userId?: Maybe<String>;
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  grade?: Maybe<Grade>;
+  index?: Maybe<Int>;
+  notes?: Maybe<NoteUpdateManyWithoutUserInput>;
+  tags?: Maybe<TagUpdateManyWithoutUserInput>;
+}
+
+export interface TagWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  user?: Maybe<UserWhereInput>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  color?: Maybe<String>;
+  color_not?: Maybe<String>;
+  color_in?: Maybe<String[] | String>;
+  color_not_in?: Maybe<String[] | String>;
+  color_lt?: Maybe<String>;
+  color_lte?: Maybe<String>;
+  color_gt?: Maybe<String>;
+  color_gte?: Maybe<String>;
+  color_contains?: Maybe<String>;
+  color_not_contains?: Maybe<String>;
+  color_starts_with?: Maybe<String>;
+  color_not_starts_with?: Maybe<String>;
+  color_ends_with?: Maybe<String>;
+  color_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  todos_some?: Maybe<TodoWhereInput>;
+  AND?: Maybe<TagWhereInput[] | TagWhereInput>;
+}
+
+export interface TagCreateOneWithoutTodosInput {
+  create?: Maybe<TagCreateWithoutTodosInput>;
+  connect?: Maybe<TagWhereUniqueInput>;
+}
+
+export interface TagUpdateWithoutTodosDataInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutTagsInput>;
+  name?: Maybe<String>;
+  color?: Maybe<String>;
+}
+
+export interface TagCreateWithoutTodosInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneWithoutTagsInput;
+  name: String;
+  color: String;
+}
+
+export interface NoteUpdateManyWithoutUserInput {
+  create?: Maybe<NoteCreateWithoutUserInput[] | NoteCreateWithoutUserInput>;
+  delete?: Maybe<NoteWhereUniqueInput[] | NoteWhereUniqueInput>;
+  connect?: Maybe<NoteWhereUniqueInput[] | NoteWhereUniqueInput>;
+  set?: Maybe<NoteWhereUniqueInput[] | NoteWhereUniqueInput>;
+  disconnect?: Maybe<NoteWhereUniqueInput[] | NoteWhereUniqueInput>;
+  update?: Maybe<
+    | NoteUpdateWithWhereUniqueWithoutUserInput[]
+    | NoteUpdateWithWhereUniqueWithoutUserInput
+  >;
+  upsert?: Maybe<
+    | NoteUpsertWithWhereUniqueWithoutUserInput[]
+    | NoteUpsertWithWhereUniqueWithoutUserInput
+  >;
+  deleteMany?: Maybe<NoteScalarWhereInput[] | NoteScalarWhereInput>;
+  updateMany?: Maybe<
+    NoteUpdateManyWithWhereNestedInput[] | NoteUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface UserCreateOneWithoutTagsInput {
+  create?: Maybe<UserCreateWithoutTagsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface TodoSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TodoWhereInput>;
+  AND?: Maybe<TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput>;
+}
+
+export interface UserCreateWithoutTagsInput {
+  id?: Maybe<ID_Input>;
+  userId: String;
+  name: String;
+  email: String;
+  password: String;
+  grade?: Maybe<Grade>;
+  index?: Maybe<Int>;
+  notes?: Maybe<NoteCreateManyWithoutUserInput>;
+  todos?: Maybe<TodoCreateManyWithoutUserInput>;
+}
+
+export interface NoteSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<NoteWhereInput>;
+  AND?: Maybe<NoteSubscriptionWhereInput[] | NoteSubscriptionWhereInput>;
+}
+
+export interface NoteUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutNotesInput>;
+  title?: Maybe<String>;
+  content?: Maybe<String>;
+}
+
+export interface UserUpdateInput {
+  userId?: Maybe<String>;
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  grade?: Maybe<Grade>;
+  index?: Maybe<Int>;
+  notes?: Maybe<NoteUpdateManyWithoutUserInput>;
+  tags?: Maybe<TagUpdateManyWithoutUserInput>;
+  todos?: Maybe<TodoUpdateManyWithoutUserInput>;
+}
+
+export interface UserUpdateOneRequiredWithoutNotesInput {
+  create?: Maybe<UserCreateWithoutNotesInput>;
+  update?: Maybe<UserUpdateWithoutNotesDataInput>;
+  upsert?: Maybe<UserUpsertWithoutNotesInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface TodoUpdateManyMutationInput {
+  index?: Maybe<Int>;
+  done?: Maybe<Boolean>;
+  content?: Maybe<String>;
+}
+
+export interface UserUpdateWithoutNotesDataInput {
+  userId?: Maybe<String>;
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  grade?: Maybe<Grade>;
+  index?: Maybe<Int>;
+  tags?: Maybe<TagUpdateManyWithoutUserInput>;
+  todos?: Maybe<TodoUpdateManyWithoutUserInput>;
+}
+
+export interface TodoUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutTodosInput>;
+  tag?: Maybe<TagUpdateOneRequiredWithoutTodosInput>;
+  index?: Maybe<Int>;
+  done?: Maybe<Boolean>;
+  content?: Maybe<String>;
+}
+
+export interface TagUpdateManyWithoutUserInput {
+  create?: Maybe<TagCreateWithoutUserInput[] | TagCreateWithoutUserInput>;
+  delete?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  set?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  disconnect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  update?: Maybe<
+    | TagUpdateWithWhereUniqueWithoutUserInput[]
+    | TagUpdateWithWhereUniqueWithoutUserInput
+  >;
+  upsert?: Maybe<
+    | TagUpsertWithWhereUniqueWithoutUserInput[]
+    | TagUpsertWithWhereUniqueWithoutUserInput
+  >;
+  deleteMany?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  updateMany?: Maybe<
+    TagUpdateManyWithWhereNestedInput[] | TagUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface TagUpdateManyMutationInput {
+  name?: Maybe<String>;
+  color?: Maybe<String>;
+}
+
+export interface TagUpdateWithWhereUniqueWithoutUserInput {
+  where: TagWhereUniqueInput;
+  data: TagUpdateWithoutUserDataInput;
+}
+
+export interface TagUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutTagsInput>;
+  name?: Maybe<String>;
+  color?: Maybe<String>;
+  todos?: Maybe<TodoUpdateManyWithoutTagInput>;
+}
+
+export interface UserUpdateWithoutTagsDataInput {
+  userId?: Maybe<String>;
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  grade?: Maybe<Grade>;
+  index?: Maybe<Int>;
+  notes?: Maybe<NoteUpdateManyWithoutUserInput>;
+  todos?: Maybe<TodoUpdateManyWithoutUserInput>;
+}
+
+export interface NoteUpdateManyMutationInput {
+  title?: Maybe<String>;
+  content?: Maybe<String>;
+}
+
+export interface TodoUpdateManyWithoutTagInput {
+  create?: Maybe<TodoCreateWithoutTagInput[] | TodoCreateWithoutTagInput>;
+  delete?: Maybe<TodoWhereUniqueInput[] | TodoWhereUniqueInput>;
+  connect?: Maybe<TodoWhereUniqueInput[] | TodoWhereUniqueInput>;
+  set?: Maybe<TodoWhereUniqueInput[] | TodoWhereUniqueInput>;
+  disconnect?: Maybe<TodoWhereUniqueInput[] | TodoWhereUniqueInput>;
+  update?: Maybe<
+    | TodoUpdateWithWhereUniqueWithoutTagInput[]
+    | TodoUpdateWithWhereUniqueWithoutTagInput
+  >;
+  upsert?: Maybe<
+    | TodoUpsertWithWhereUniqueWithoutTagInput[]
+    | TodoUpsertWithWhereUniqueWithoutTagInput
+  >;
+  deleteMany?: Maybe<TodoScalarWhereInput[] | TodoScalarWhereInput>;
+  updateMany?: Maybe<
+    TodoUpdateManyWithWhereNestedInput[] | TodoUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface UserUpsertWithoutNotesInput {
+  update: UserUpdateWithoutNotesDataInput;
+  create: UserCreateWithoutNotesInput;
+}
+
+export interface TodoUpdateWithWhereUniqueWithoutTagInput {
+  where: TodoWhereUniqueInput;
+  data: TodoUpdateWithoutTagDataInput;
+}
+
+export interface TagUpsertWithoutTodosInput {
+  update: TagUpdateWithoutTodosDataInput;
+  create: TagCreateWithoutTodosInput;
+}
+
+export interface TodoUpdateWithoutTagDataInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutTodosInput>;
+  index?: Maybe<Int>;
+  done?: Maybe<Boolean>;
+  content?: Maybe<String>;
+}
+
+export interface UserCreateOneWithoutNotesInput {
+  create?: Maybe<UserCreateWithoutNotesInput>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
@@ -370,6 +733,14 @@ export interface UserWhereInput {
   grade_not?: Maybe<Grade>;
   grade_in?: Maybe<Grade[] | Grade>;
   grade_not_in?: Maybe<Grade[] | Grade>;
+  index?: Maybe<Int>;
+  index_not?: Maybe<Int>;
+  index_in?: Maybe<Int[] | Int>;
+  index_not_in?: Maybe<Int[] | Int>;
+  index_lt?: Maybe<Int>;
+  index_lte?: Maybe<Int>;
+  index_gt?: Maybe<Int>;
+  index_gte?: Maybe<Int>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -392,14 +763,9 @@ export interface UserWhereInput {
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface UserUpdateWithoutTodosDataInput {
-  userId?: Maybe<String>;
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  grade?: Maybe<Grade>;
-  notes?: Maybe<NoteUpdateManyWithoutUserInput>;
-  tags?: Maybe<TagUpdateManyWithoutUserInput>;
+export interface TagCreateManyWithoutUserInput {
+  create?: Maybe<TagCreateWithoutUserInput[] | TagCreateWithoutUserInput>;
+  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
 }
 
 export interface TodoWhereInput {
@@ -462,292 +828,9 @@ export interface TodoWhereInput {
   AND?: Maybe<TodoWhereInput[] | TodoWhereInput>;
 }
 
-export interface TagCreateOneWithoutTodosInput {
-  create?: Maybe<TagCreateWithoutTodosInput>;
-  connect?: Maybe<TagWhereUniqueInput>;
-}
-
-export interface TagUpdateWithoutTodosDataInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutTagsInput>;
-  name?: Maybe<String>;
-  color?: Maybe<String>;
-}
-
-export interface TagCreateWithoutTodosInput {
-  id?: Maybe<ID_Input>;
-  user: UserCreateOneWithoutTagsInput;
-  name: String;
-  color: String;
-}
-
-export interface NoteUpdateManyWithoutUserInput {
-  create?: Maybe<NoteCreateWithoutUserInput[] | NoteCreateWithoutUserInput>;
-  delete?: Maybe<NoteWhereUniqueInput[] | NoteWhereUniqueInput>;
-  connect?: Maybe<NoteWhereUniqueInput[] | NoteWhereUniqueInput>;
-  set?: Maybe<NoteWhereUniqueInput[] | NoteWhereUniqueInput>;
-  disconnect?: Maybe<NoteWhereUniqueInput[] | NoteWhereUniqueInput>;
-  update?: Maybe<
-    | NoteUpdateWithWhereUniqueWithoutUserInput[]
-    | NoteUpdateWithWhereUniqueWithoutUserInput
-  >;
-  upsert?: Maybe<
-    | NoteUpsertWithWhereUniqueWithoutUserInput[]
-    | NoteUpsertWithWhereUniqueWithoutUserInput
-  >;
-  deleteMany?: Maybe<NoteScalarWhereInput[] | NoteScalarWhereInput>;
-  updateMany?: Maybe<
-    NoteUpdateManyWithWhereNestedInput[] | NoteUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface UserCreateOneWithoutTagsInput {
-  create?: Maybe<UserCreateWithoutTagsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface TodoSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<TodoWhereInput>;
-  AND?: Maybe<TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput>;
-}
-
-export interface UserCreateWithoutTagsInput {
-  id?: Maybe<ID_Input>;
-  userId: String;
-  name: String;
-  email: String;
-  password: String;
-  grade?: Maybe<Grade>;
-  notes?: Maybe<NoteCreateManyWithoutUserInput>;
-  todos?: Maybe<TodoCreateManyWithoutUserInput>;
-}
-
-export interface NoteSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<NoteWhereInput>;
-  AND?: Maybe<NoteSubscriptionWhereInput[] | NoteSubscriptionWhereInput>;
-}
-
-export interface NoteUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutNotesInput>;
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-}
-
-export interface UserUpdateInput {
-  userId?: Maybe<String>;
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  grade?: Maybe<Grade>;
-  notes?: Maybe<NoteUpdateManyWithoutUserInput>;
-  tags?: Maybe<TagUpdateManyWithoutUserInput>;
-  todos?: Maybe<TodoUpdateManyWithoutUserInput>;
-}
-
-export interface UserUpdateOneRequiredWithoutNotesInput {
-  create?: Maybe<UserCreateWithoutNotesInput>;
-  update?: Maybe<UserUpdateWithoutNotesDataInput>;
-  upsert?: Maybe<UserUpsertWithoutNotesInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface TodoUpdateManyMutationInput {
-  index?: Maybe<Int>;
-  done?: Maybe<Boolean>;
-  content?: Maybe<String>;
-}
-
-export interface UserUpdateWithoutNotesDataInput {
-  userId?: Maybe<String>;
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  grade?: Maybe<Grade>;
-  tags?: Maybe<TagUpdateManyWithoutUserInput>;
-  todos?: Maybe<TodoUpdateManyWithoutUserInput>;
-}
-
-export interface TodoUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutTodosInput>;
-  tag?: Maybe<TagUpdateOneRequiredWithoutTodosInput>;
-  index?: Maybe<Int>;
-  done?: Maybe<Boolean>;
-  content?: Maybe<String>;
-}
-
-export interface TagUpdateManyWithoutUserInput {
-  create?: Maybe<TagCreateWithoutUserInput[] | TagCreateWithoutUserInput>;
-  delete?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
-  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
-  set?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
-  disconnect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
-  update?: Maybe<
-    | TagUpdateWithWhereUniqueWithoutUserInput[]
-    | TagUpdateWithWhereUniqueWithoutUserInput
-  >;
-  upsert?: Maybe<
-    | TagUpsertWithWhereUniqueWithoutUserInput[]
-    | TagUpsertWithWhereUniqueWithoutUserInput
-  >;
-  deleteMany?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
-  updateMany?: Maybe<
-    TagUpdateManyWithWhereNestedInput[] | TagUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface TagUpdateManyMutationInput {
-  name?: Maybe<String>;
-  color?: Maybe<String>;
-}
-
-export interface TagUpdateWithWhereUniqueWithoutUserInput {
-  where: TagWhereUniqueInput;
-  data: TagUpdateWithoutUserDataInput;
-}
-
-export interface TagUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutTagsInput>;
-  name?: Maybe<String>;
-  color?: Maybe<String>;
-  todos?: Maybe<TodoUpdateManyWithoutTagInput>;
-}
-
-export interface UserUpdateWithoutTagsDataInput {
-  userId?: Maybe<String>;
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  grade?: Maybe<Grade>;
-  notes?: Maybe<NoteUpdateManyWithoutUserInput>;
-  todos?: Maybe<TodoUpdateManyWithoutUserInput>;
-}
-
-export interface NoteUpdateManyMutationInput {
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-}
-
-export interface TodoUpdateManyWithoutTagInput {
+export interface TodoCreateManyWithoutTagInput {
   create?: Maybe<TodoCreateWithoutTagInput[] | TodoCreateWithoutTagInput>;
-  delete?: Maybe<TodoWhereUniqueInput[] | TodoWhereUniqueInput>;
   connect?: Maybe<TodoWhereUniqueInput[] | TodoWhereUniqueInput>;
-  set?: Maybe<TodoWhereUniqueInput[] | TodoWhereUniqueInput>;
-  disconnect?: Maybe<TodoWhereUniqueInput[] | TodoWhereUniqueInput>;
-  update?: Maybe<
-    | TodoUpdateWithWhereUniqueWithoutTagInput[]
-    | TodoUpdateWithWhereUniqueWithoutTagInput
-  >;
-  upsert?: Maybe<
-    | TodoUpsertWithWhereUniqueWithoutTagInput[]
-    | TodoUpsertWithWhereUniqueWithoutTagInput
-  >;
-  deleteMany?: Maybe<TodoScalarWhereInput[] | TodoScalarWhereInput>;
-  updateMany?: Maybe<
-    TodoUpdateManyWithWhereNestedInput[] | TodoUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface UserUpsertWithoutNotesInput {
-  update: UserUpdateWithoutNotesDataInput;
-  create: UserCreateWithoutNotesInput;
-}
-
-export interface TodoUpdateWithWhereUniqueWithoutTagInput {
-  where: TodoWhereUniqueInput;
-  data: TodoUpdateWithoutTagDataInput;
-}
-
-export interface TagUpsertWithoutTodosInput {
-  update: TagUpdateWithoutTodosDataInput;
-  create: TagCreateWithoutTodosInput;
-}
-
-export interface TodoUpdateWithoutTagDataInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutTodosInput>;
-  index?: Maybe<Int>;
-  done?: Maybe<Boolean>;
-  content?: Maybe<String>;
-}
-
-export interface UserCreateOneWithoutNotesInput {
-  create?: Maybe<UserCreateWithoutNotesInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface TagWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  user?: Maybe<UserWhereInput>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  color?: Maybe<String>;
-  color_not?: Maybe<String>;
-  color_in?: Maybe<String[] | String>;
-  color_not_in?: Maybe<String[] | String>;
-  color_lt?: Maybe<String>;
-  color_lte?: Maybe<String>;
-  color_gt?: Maybe<String>;
-  color_gte?: Maybe<String>;
-  color_contains?: Maybe<String>;
-  color_not_contains?: Maybe<String>;
-  color_starts_with?: Maybe<String>;
-  color_not_starts_with?: Maybe<String>;
-  color_ends_with?: Maybe<String>;
-  color_not_ends_with?: Maybe<String>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  todos_some?: Maybe<TodoWhereInput>;
-  AND?: Maybe<TagWhereInput[] | TagWhereInput>;
-}
-
-export interface TagCreateManyWithoutUserInput {
-  create?: Maybe<TagCreateWithoutUserInput[] | TagCreateWithoutUserInput>;
-  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
 }
 
 export interface UserUpdateOneRequiredWithoutTagsInput {
@@ -755,74 +838,6 @@ export interface UserUpdateOneRequiredWithoutTagsInput {
   update?: Maybe<UserUpdateWithoutTagsDataInput>;
   upsert?: Maybe<UserUpsertWithoutTagsInput>;
   connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface TodoCreateManyWithoutTagInput {
-  create?: Maybe<TodoCreateWithoutTagInput[] | TodoCreateWithoutTagInput>;
-  connect?: Maybe<TodoWhereUniqueInput[] | TodoWhereUniqueInput>;
-}
-
-export interface NoteWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  user?: Maybe<UserWhereInput>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  content?: Maybe<String>;
-  content_not?: Maybe<String>;
-  content_in?: Maybe<String[] | String>;
-  content_not_in?: Maybe<String[] | String>;
-  content_lt?: Maybe<String>;
-  content_lte?: Maybe<String>;
-  content_gt?: Maybe<String>;
-  content_gte?: Maybe<String>;
-  content_contains?: Maybe<String>;
-  content_not_contains?: Maybe<String>;
-  content_starts_with?: Maybe<String>;
-  content_not_starts_with?: Maybe<String>;
-  content_ends_with?: Maybe<String>;
-  content_not_ends_with?: Maybe<String>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<NoteWhereInput[] | NoteWhereInput>;
 }
 
 export interface UserCreateOneWithoutTodosInput {
@@ -935,6 +950,7 @@ export interface UserUpdateManyMutationInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   grade?: Maybe<Grade>;
+  index?: Maybe<Int>;
 }
 
 export interface NoteUpdateManyWithWhereNestedInput {
@@ -1044,6 +1060,7 @@ export interface UserCreateWithoutNotesInput {
   email: String;
   password: String;
   grade?: Maybe<Grade>;
+  index?: Maybe<Int>;
   tags?: Maybe<TagCreateManyWithoutUserInput>;
   todos?: Maybe<TodoCreateManyWithoutUserInput>;
 }
@@ -1230,6 +1247,7 @@ export interface UserCreateWithoutTodosInput {
   email: String;
   password: String;
   grade?: Maybe<Grade>;
+  index?: Maybe<Int>;
   notes?: Maybe<NoteCreateManyWithoutUserInput>;
   tags?: Maybe<TagCreateManyWithoutUserInput>;
 }
@@ -1256,6 +1274,7 @@ export interface UserCreateInput {
   email: String;
   password: String;
   grade?: Maybe<Grade>;
+  index?: Maybe<Int>;
   notes?: Maybe<NoteCreateManyWithoutUserInput>;
   tags?: Maybe<TagCreateManyWithoutUserInput>;
   todos?: Maybe<TodoCreateManyWithoutUserInput>;
@@ -1280,6 +1299,7 @@ export interface UserPreviousValues {
   email: String;
   password: String;
   grade: Grade;
+  index: Int;
   createdAt: DateTimeOutput;
   updatedAt?: DateTimeOutput;
 }
@@ -1293,6 +1313,7 @@ export interface UserPreviousValuesPromise
   email: () => Promise<String>;
   password: () => Promise<String>;
   grade: () => Promise<Grade>;
+  index: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -1306,6 +1327,7 @@ export interface UserPreviousValuesSubscription
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   grade: () => Promise<AsyncIterator<Grade>>;
+  index: () => Promise<AsyncIterator<Int>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -1506,6 +1528,7 @@ export interface User {
   email: String;
   password: String;
   grade: Grade;
+  index: Int;
   createdAt: DateTimeOutput;
   updatedAt?: DateTimeOutput;
 }
@@ -1517,6 +1540,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   email: () => Promise<String>;
   password: () => Promise<String>;
   grade: () => Promise<Grade>;
+  index: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   notes: <T = FragmentableArray<Note>>(args?: {
@@ -1557,6 +1581,7 @@ export interface UserSubscription
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   grade: () => Promise<AsyncIterator<Grade>>;
+  index: () => Promise<AsyncIterator<Int>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   notes: <T = Promise<AsyncIterator<NoteSubscription>>>(args?: {
@@ -1597,6 +1622,7 @@ export interface UserNullablePromise
   email: () => Promise<String>;
   password: () => Promise<String>;
   grade: () => Promise<Grade>;
+  index: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   notes: <T = FragmentableArray<Note>>(args?: {
@@ -2036,13 +2062,6 @@ The `Boolean` scalar type represents `true` or `false`.
 export type Boolean = boolean;
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
-
-export type Long = string;
-
-/*
 DateTime scalar input type, allowing Date
 */
 export type DateTimeInput = Date | string;
@@ -2051,6 +2070,13 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
+
+export type Long = string;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.

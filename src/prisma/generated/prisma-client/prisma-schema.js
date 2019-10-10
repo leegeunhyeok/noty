@@ -958,6 +958,7 @@ type User {
   email: String!
   password: String!
   grade: Grade!
+  index: Int!
   createdAt: DateTime!
   updatedAt: DateTime
   notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note!]
@@ -978,6 +979,7 @@ input UserCreateInput {
   email: String!
   password: String!
   grade: Grade
+  index: Int
   notes: NoteCreateManyWithoutUserInput
   tags: TagCreateManyWithoutUserInput
   todos: TodoCreateManyWithoutUserInput
@@ -1005,6 +1007,7 @@ input UserCreateWithoutNotesInput {
   email: String!
   password: String!
   grade: Grade
+  index: Int
   tags: TagCreateManyWithoutUserInput
   todos: TodoCreateManyWithoutUserInput
 }
@@ -1016,6 +1019,7 @@ input UserCreateWithoutTagsInput {
   email: String!
   password: String!
   grade: Grade
+  index: Int
   notes: NoteCreateManyWithoutUserInput
   todos: TodoCreateManyWithoutUserInput
 }
@@ -1027,6 +1031,7 @@ input UserCreateWithoutTodosInput {
   email: String!
   password: String!
   grade: Grade
+  index: Int
   notes: NoteCreateManyWithoutUserInput
   tags: TagCreateManyWithoutUserInput
 }
@@ -1049,6 +1054,8 @@ enum UserOrderByInput {
   password_DESC
   grade_ASC
   grade_DESC
+  index_ASC
+  index_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1062,6 +1069,7 @@ type UserPreviousValues {
   email: String!
   password: String!
   grade: Grade!
+  index: Int!
   createdAt: DateTime!
   updatedAt: DateTime
 }
@@ -1088,6 +1096,7 @@ input UserUpdateInput {
   email: String
   password: String
   grade: Grade
+  index: Int
   notes: NoteUpdateManyWithoutUserInput
   tags: TagUpdateManyWithoutUserInput
   todos: TodoUpdateManyWithoutUserInput
@@ -1099,6 +1108,7 @@ input UserUpdateManyMutationInput {
   email: String
   password: String
   grade: Grade
+  index: Int
 }
 
 input UserUpdateOneRequiredWithoutNotesInput {
@@ -1128,6 +1138,7 @@ input UserUpdateWithoutNotesDataInput {
   email: String
   password: String
   grade: Grade
+  index: Int
   tags: TagUpdateManyWithoutUserInput
   todos: TodoUpdateManyWithoutUserInput
 }
@@ -1138,6 +1149,7 @@ input UserUpdateWithoutTagsDataInput {
   email: String
   password: String
   grade: Grade
+  index: Int
   notes: NoteUpdateManyWithoutUserInput
   todos: TodoUpdateManyWithoutUserInput
 }
@@ -1148,6 +1160,7 @@ input UserUpdateWithoutTodosDataInput {
   email: String
   password: String
   grade: Grade
+  index: Int
   notes: NoteUpdateManyWithoutUserInput
   tags: TagUpdateManyWithoutUserInput
 }
@@ -1242,6 +1255,14 @@ input UserWhereInput {
   grade_not: Grade
   grade_in: [Grade!]
   grade_not_in: [Grade!]
+  index: Int
+  index_not: Int
+  index_in: [Int!]
+  index_not_in: [Int!]
+  index_lt: Int
+  index_lte: Int
+  index_gt: Int
+  index_gte: Int
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]

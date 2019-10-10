@@ -5,6 +5,7 @@ type User {
   email: String! @unique
   password: String!
   grade: Grade! @default(value: DEFAULT_USER)
+  index: Int! @default(value: 1)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime @updatedAt
   notes: [Note!]! @relation(link: INLINE, name: "NoteByUser")
