@@ -25,6 +25,7 @@ SOFTWARE.
 */
 
 const { NotyServer } = require('./src/server')
+const { log } = require('./src/server/logger')
 const config = require('config')
 const PORT = config.get('port')
 
@@ -36,4 +37,4 @@ server
     port: PORT,
     endpoint: '/graphql',
     playground: '/playground'
-  }, _ => console.log(`Server is running on ${PORT} port`))
+  }, _ => log.info(`Server is running on ${PORT} port`))
