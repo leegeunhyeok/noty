@@ -5,8 +5,10 @@ const logger = function () {
   const COLOR_SCHEME = {
     DEBUG: colors.white,
     INFO: colors.blue,
+    SUCCESS: colors.green,
     WARNING: colors.yellow,
     DANGER: colors.red,
+    ERROR: colors.red,
     CRITICAL: colors.magenta
   }
 
@@ -34,11 +36,17 @@ const logger = function () {
     info (...args) {
       printLog('INFO', ...args)
     },
+    success (...args) {
+      printLog('SUCCESS', ...args)
+    },
     warning (...args) {
       printLog('WARNING', ...args)
     },
     danger (...args) {
       printLog('DANGER', ...args)
+    },
+    error (...args) {
+      printLog('ERROR', ...args)
     },
     critical (...args) {
       printLog('CRITICAL', ...args)
