@@ -50,6 +50,10 @@ module.exports = {
       // Check userId is exist
       return !!await ctx.prisma.user({ userId })
     },
+    checkUserEmailExist: async (_parent, { email }, ctx) => {
+      // Check email is exist
+      return !!await ctx.prisma.user({ email })
+    },
     register: async (_parent, { userId, name, email, password }, ctx) => {
       // Password hasing
       const hashedPassword = await bcrypt.hash(password, 10)
@@ -82,41 +86,198 @@ module.exports = {
       // Token issuance
       const token = jwt.sign({
         id: user.id,
-        username: user.email
+        name: user.name,
+        email: user.email,
+        grade: user.grade
       }, 'secret', { // TODO: Generate random value
-        expiresIn: '1d'
+        expiresIn: '1h'
       })
 
       return { token, user }
+    },
+    createNote: async (_parent, { title, content }, ctx) => {
+      if (!ctx.user) {
+        throw new Error('Not Authenticated')
+      }
+
+      const note = await ctx.prisma.createNote({
+        title,
+        content,
+        user: {
+          connect: {
+            id: ctx.user.id
+          }
+        }
+      })
+
+      return note
+    },
+    updateNote: async (_parent, { noteId, title, content }, ctx) => {
+      if (!ctx.user) {
+        throw new Error('Not Authenticated')
+      }
+
+      const note = await ctx.prisma.updateNote({
+        where: {
+          id: noteId
+        },
+        data: {
+          title,
+          content
+        }
+      })
+
+      return note
+    },
+    deleteNote: async (_parent, { noteId }, ctx) => {
+      if (!ctx.user) {
+        throw new Error('Not Authenticated')
+      }
+
+      const note = await ctx.prisma.deleteNote({
+        id: noteId
+      })
+      
+      return !!note
+    },
+    createTag: async (_parent, { name, color }, ctx) => {
+      if (!ctx.user) {
+        throw new Error('Not Authenticated')
+      }
+
+      const tag = await ctx.prisma.createTag({
+        name,
+        color,
+        user: {
+          connect: {
+            id: ctx.user.id
+          }
+        }
+      })
+
+      return tag
+    },
+    updateTag: async (_parent, { tagId, name, color }, ctx) => {
+      if (!ctx.user) {
+        throw new Error('Not Authenticated')
+      }
+
+      const tag = await ctx.prisma.updateTag({
+        where: {
+          id: tagId
+        },
+        data: {
+          name,
+          color
+        }
+      })
+
+      return tag
+    },
+    deleteTag: async (_parent, { tagId }, ctx) => {
+      if (!ctx.user) {
+        throw new Error('Not Authenticated')
+      }
+
+      const tag = await ctx.prisma.deleteTag({
+        id: tagId
+      })
+      
+      return !!tag
+    },
+    createTodo: async (_parent, { content, tagId }, ctx) => {
+      if (!ctx.user) {
+        throw new Error('Not Authenticated')
+      }
+
+      const user = await ctx.prisma.user({ id: ctx.user.id })
+      const updatedUser = await ctx.prisma.updateUser({
+        where: {
+          id: user.id
+        },
+        data: {
+          index: user.index + 1
+        }
+      })
+
+      const todo = await ctx.prisma.createTodo({
+        content,
+        index: updatedUser.index,
+        user: {
+          connect: {
+            id: updatedUser.id
+          }
+        },
+        tag: {
+          connect: {
+            id: tagId
+          }
+        }
+      })
+
+      return todo
+    },
+    updateTodo: async (_parent, { todoId, content, tagId, done }, ctx) => {
+      if (!ctx.user) {
+        throw new Error('Not Authenticated')
+      }
+
+      const todo = await ctx.prisma.updateTodo({
+        where: {
+          id: todoId
+        },
+        data: {
+          content,
+          done,
+          tag: {
+            connect: {
+              id: tagId
+            }
+          }
+        }
+      })
+
+      return todo
+    },
+    deleteTodo: async (_parent, { todoId }, ctx) => {
+      if (!ctx.user) {
+        throw new Error('Not Authenticated')
+      }
+
+      const todo = await ctx.prisma.deleteTodo({
+        id: todoId
+      })
+      
+      return !!todo
     }
   },
   User: {
     notes: ({ id }, _args, context) => {
-      return context.prisma.User({ id }).notes()
+      return context.prisma.user({ id }).notes()
     },
     tags: ({ id }, _args, context) => {
-      return context.prisma.User({ id }).tags()
+      return context.prisma.user({ id }).tags()
     },
     todos: ({ id }, _args, context) => {
-      return context.prisma.User({ id }).todos()
+      return context.prisma.user({ id }).todos()
     }
   },
   Note: {
     user: ({ id }, _args, context) => {
-      return context.prisma.Note({ id }).user()
+      return context.prisma.note({ id }).user()
     }
   },
   Tag: {
     user: ({ id }, _args, context) => {
-      return context.prisma.Tag({ id }).user()
+      return context.prisma.tag({ id }).user()
     },
     todos: ({ id }, _args, context) => {
-      return context.prisma.Tag({ id }).todos()
+      return context.prisma.tag({ id }).todos()
     }
   },
   Todo: {
     tag: ({ id }, _args, context) => {
-      return context.prisma.Todo({ id }).tag()
+      return context.prisma.todo({ id }).tag()
     }
   }
 }
