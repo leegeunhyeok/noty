@@ -35,6 +35,6 @@ server
   .initExpress()
   .start({
     port: PORT,
-    endpoint: '/graphql',
+    endpoint: '/_/graphql',
     playground: '/playground'
   }, _ => log.success(`Server is running on ${PORT} port`))
