@@ -1,5 +1,7 @@
 const webpush = require('web-push')
 
+const SUBJECT = 'mailto:dev.ghlee@gmail.com'
+
 class PushManager {
   /**
    * 생성자
@@ -18,12 +20,50 @@ class PushManager {
     const vapidKeys = webpush.generateVAPIDKeys()
     webpush.setGCMAPIKey(this._serverKey)
     webpush.setVapidDetails(
-      'mailto:dev.ghlee@gmail.com',
+      SUBJECT,
       vapidKeys.publicKey,
       vapidKeys.privateKey
     )
 
+    console.log(webpush)
+
     this._vapidKeys = vapidKeys
+  }
+
+  /**
+   * 공개키에 접근할 수 있는 서버 라우팅 경로 반환
+   * @return {string} 라우팅 경로
+   */
+  getPublicKeyRoute () {
+    return '/pushKey'
+  }
+  
+  /**
+   * 공개키 반환
+   * @return {string} 공개키
+   */
+  getPublicKey () {
+    return this._vapidKeys.publicKey
+  }
+
+  /**
+   * 푸시 알림 전송
+   * @param {string} subscription 구독 정보
+   * @param {any} data 푸시 데이터
+   * @return {Promise}
+   */
+  sendNotification (subscription, data) {
+    webpush.getVapidHeaders()
+    const option = {
+      TTL: 24 * 60 * 60,
+      vapidDetails: {
+        subject: SUBJECT,
+        publicKey: this._vapidKeys.publicKey,
+        privateKey: this._vapidKeys.privateKey
+      }
+    }
+
+    return webpush.sendNotification(subscription, data, option)
   }
 }
 
