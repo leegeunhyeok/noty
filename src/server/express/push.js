@@ -16,7 +16,7 @@ class PushManager {
   init () {
     // 암호키 생성
     const vapidKeys = webpush.generateVAPIDKeys()
-    webpush.setGCMAPIKey(this.serverKey)
+    webpush.setGCMAPIKey(this._serverKey)
     webpush.setVapidDetails(
       'mailto:dev.ghlee@gmail.com',
       vapidKeys.publicKey,
