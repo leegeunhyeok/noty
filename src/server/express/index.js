@@ -29,7 +29,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
-exports.init = app => {
+exports.init = (app, pushManager) => {
   log.info('Express Server Initializing..')
   // Middleware
   if (process.env.NODE_ENV === 'development') {
@@ -43,5 +43,9 @@ exports.init = app => {
   // Route
   app.get('/', (_req, res) => {
     res.send('<h1>Hello!</h1>')
+  })
+
+  app.get(pushManager.getPublicKeyRoute(), (_req, res) => {
+    res.json({ publicKey: pushManager.getPublicKey() })
   })
 }
