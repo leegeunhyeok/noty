@@ -17,8 +17,14 @@ class NotyServer {
   }
 
   createServer () {
+    log.info('Push Manager Initializing..')
+    const serverKey = config.get('firebase.serverKey')
+    const pushManager = new PushManager(serverKey)
+    pushManager.init()
+    log.success('Push Manager ready')
+
     log.info('GraphQL Server Initializing..')
-    this._server = new GraphQLServer({
+    const server = new GraphQLServer({
       typeDefs: path.join(__dirname, 'graphql/schema.graphql'),
       resolvers: require(path.join(__dirname, 'graphql/resolvers')),
       resolverValidationOptions :{
@@ -29,22 +35,17 @@ class NotyServer {
         const token = tokenWithBearer.split(' ')[1]
         const user = getUser(token)
     
-        return { user, prisma }
+        return {
+          user,
+          prisma,
+          sendNotification: pushManager.sendNotification
+        }
       }
     })
 
-    log.success('GraphQL Server ready')
-    return this
-  }
-
-  initPushManager () {
-    log.info('Push Manager Initializing..')
-    const serverKey = config.get('firebase.serverKey')
-    const pushManager = new PushManager(serverKey)
-    pushManager.init()
-
     this._pushManager = pushManager
-    log.success('Push Manager ready')
+    this._server = server
+    log.success('GraphQL Server ready')
     return this
   }
 
