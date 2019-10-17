@@ -25,8 +25,6 @@ class PushManager {
       vapidKeys.privateKey
     )
 
-    console.log(webpush)
-
     this._vapidKeys = vapidKeys
   }
 

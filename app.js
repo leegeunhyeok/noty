@@ -32,7 +32,6 @@ const PORT = config.get('port')
 const server = new NotyServer()
 server
   .createServer()
-  .initPushManager()
   .initExpress()
   .start({
     port: PORT,
