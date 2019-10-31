@@ -1,22 +1,45 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
+import Note from '../views/Note.vue'
+import Todo from '../views/Todo.vue'
+import Tag from '../views/Tag.vue'
+import Setting from '../views/Setting.vue'
+import Signin from '../views/Signin.vue'
+import Signup from '../views/Signup.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: Home
+    path: '/note',
+    name: 'note',
+    component: Note
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/todo',
+    name: 'todo',
+    component: Todo
+  },
+  {
+    path: '/tag',
+    name: 'tag',
+    component: Tag
+  },
+  {
+    path: '/setting',
+    name: 'setting',
+    component: Setting
+  },
+  {
+    path: '/Signin',
+    name: 'Signin',
+    component: Signin
+  },
+  {
+    path: '/Signup',
+    name: 'Signup',
+    component: Signup
   }
 ]
 
