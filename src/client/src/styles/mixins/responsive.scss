@@ -1,0 +1,17 @@
+$widths: (
+  sm: 320,
+  md: 375,
+  lg: 768,
+  xl: 1024,
+);
+
+@mixin screen-width($prefix) {
+  @if (map-has-key($map: $width, $key: $prefix)) {
+    $px: map-get($map: $width, $key: $prefix);
+    @media screen and (max-width: $px) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
