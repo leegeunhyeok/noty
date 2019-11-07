@@ -10,7 +10,20 @@ import Signup from '../views/Signup.vue'
 
 Vue.use(VueRouter)
 
+const authenticated = redirect => {
+  return (_to, _from, next) => {
+    const condition = true
+    if (condition) {
+      next(redirect)
+    }
+  }
+}
+
 const routes = [
+  {
+    path: '/',
+    redirect: '/signin'
+  },
   {
     path: '/note',
     name: 'note',
@@ -32,14 +45,16 @@ const routes = [
     component: Setting
   },
   {
-    path: '/Signin',
+    path: '/signin',
     name: 'Signin',
-    component: Signin
+    component: Signin,
+    beforeRoute: authenticated('/')
   },
   {
-    path: '/Signup',
+    path: '/signup',
     name: 'Signup',
-    component: Signup
+    component: Signup,
+    beforeRoute: authenticated('/')
   }
 ]
 
