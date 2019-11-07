@@ -6,9 +6,9 @@ $widths: (
 );
 
 @mixin screen-width($prefix) {
-  @if (map-has-key($map: $width, $key: $prefix)) {
-    $px: map-get($map: $width, $key: $prefix);
-    @media screen and (max-width: $px) {
+  @if (map-has-key($map: $widths, $key: $prefix)) {
+    $px: map-get($map: $widths, $key: $prefix);
+    @media screen and (min-width: $px) {
       @content;
     }
   } @else {
