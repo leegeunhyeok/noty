@@ -72,6 +72,7 @@ export default {
 @import '@/styles/common';
 
 .sign-in {
+  @include page;
   @extend .wh-100;
   text-align: center;
 
