@@ -3,13 +3,19 @@
     <div class="sign-in__title">Noty</div>
     <div class="sign-in__form">
       <div class="sign-in__form__control">
-        <input type="text" spellcheck="false" placeholder="ID">
+        <input type="text" spellcheck="false" placeholder="ID"
+          @keypress.enter="login"
+          v-model="id"
+        >
       </div>
       <div class="sign-in__form__control">
-        <input type="password" spellcheck="false" placeholder="Password">
+        <input type="password" spellcheck="false" placeholder="Password"
+          @keypress.enter="login"
+          v-model="password"
+        >
       </div>
       <div class="sign-in__form__control">
-        <button>Login</button>
+        <button @click="login">Login</button>
       </div>
     </div>
     <div class="sign-in__signup">
@@ -19,8 +25,46 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
-  name: 'sign-in'
+  name: 'sign-in',
+  data () {
+    return {
+      id: '',
+      password: ''
+    }
+  },
+  methods: {
+    async login () {
+      const id = this.id
+      const password = this.password
+
+      if (!(id && password)) {
+        return
+      }
+
+      const result = await this.$apollo.mutate({
+        // Query
+        mutation: gql`mutation ($userId: String!, $password: String!) {
+          login(userId: $userId)
+        }`,
+        // Parameters
+        variables: {
+          userId: id,
+          password
+        }
+      })
+
+      /*
+        type LoginResponse {
+          token: String!
+          user: User!
+        }
+       */
+      console.log(result)
+    }
+  }
 }
 </script>
 
