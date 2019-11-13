@@ -11,7 +11,6 @@ type Mutation {
   register(
     userId: String!,
     name: String!,
-    email: String!,
     password: String!
   ): User!
   login(userId: String!, password: String!): LoginResponse!
@@ -39,7 +38,6 @@ type User {
   id: ID!
   userId: String!
   name: String!
-  email: String!
   password: String!
   grade: Grade!
   index: Int!
