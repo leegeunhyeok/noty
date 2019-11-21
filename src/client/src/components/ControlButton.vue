@@ -1,6 +1,6 @@
 <template>
   <button class="control-button"
-    @click="this.$emit('click')"
+    @click="$emit('click')"
   >+</button>
 </template>
 

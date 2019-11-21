@@ -1,6 +1,6 @@
 <template>
   <div class="note">
-    <ControlButton/>
+    <ControlButton @click="addNote"/>
   </div>
 </template>
 
@@ -43,6 +43,9 @@ export default {
       })
 
       this.notes = this.notes.concat(data.userNote)
+    },
+    addNote () {
+      console.log('Add!')
     }
   }
 }
