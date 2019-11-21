@@ -1,10 +1,50 @@
 <template>
-  <div class="note"></div>
+  <div class="note">
+    <ControlButton/>
+  </div>
 </template>
 
 <script>
+import ControlButton from '@/components/ControlButton'
+import gql from 'graphql-tag'
+
 export default {
-  name: 'note'
+  name: 'note',
+  components: {
+    ControlButton
+  },
+  data () {
+    return {
+      page: 1,
+      notes: [],
+      isLastPage: false
+    }
+  },
+  created () {
+    this.fetchNote()
+  },
+  methods: {
+    async fetchNote () {
+      const { data } = await this.$apollo.mutate({
+        // Query
+        mutation: gql`query ($userId: String!) {
+          userNote(userId: $userId) {
+            id
+            title
+            content
+            createdAt
+            updatedAt
+          }
+        }`,
+        // Parameters
+        variables: {
+          userId: this.$store.state.userId
+        }
+      })
+
+      this.notes = this.notes.concat(data.userNote)
+    }
+  }
 }
 </script>
 
