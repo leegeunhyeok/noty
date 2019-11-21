@@ -27,19 +27,15 @@ export default {
     async fetchNote () {
       const { data } = await this.$apollo.mutate({
         // Query
-        mutation: gql`query ($userId: String!) {
-          userNote(userId: $userId) {
+        mutation: gql`query {
+          userNote {
             id
             title
             content
             createdAt
             updatedAt
           }
-        }`,
-        // Parameters
-        variables: {
-          userId: this.$store.state.userId
-        }
+        }`
       })
 
       this.notes = this.notes.concat(data.userNote)
