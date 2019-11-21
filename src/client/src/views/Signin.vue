@@ -62,7 +62,11 @@ export default {
           user: User!
         }
        */
-      console.log(result)
+      if (result.token) {
+        this.$store.commit('LOGIN', result.token)
+      } else {
+        alert('Check your account')
+      }
     }
   }
 }

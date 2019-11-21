@@ -74,7 +74,12 @@ export default {
         }
       })
 
-      console.log(result)
+      if (result.name) {
+        alert(`Hello, ${result.name}!`)
+        this.$router.push({ path: '/signin' })
+      } else {
+        alert('Not registered')
+      }
     }
   }
 }
