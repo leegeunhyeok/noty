@@ -44,10 +44,15 @@ export default {
         return
       }
 
-      const result = await this.$apollo.mutate({
+      const { data } = await this.$apollo.mutate({
         // Query
         mutation: gql`mutation ($userId: String!, $password: String!) {
-          login(userId: $userId)
+          login(userId: $userId, password: $password) {
+            token,
+            user {
+              id
+            }
+          }
         }`,
         // Parameters
         variables: {
@@ -62,8 +67,11 @@ export default {
           user: User!
         }
        */
-      if (result.token) {
-        this.$store.commit('LOGIN', result.token)
+      if (data.login) {
+        this.$store.commit('LOGIN', {
+          token: data.login.token,
+          userId: data.login.user.id
+        })
       } else {
         alert('Check your account')
       }

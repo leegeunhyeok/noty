@@ -60,11 +60,13 @@ export default {
         return
       }
 
-      const result = await this.$apollo.mutate({
+      const { data } = await this.$apollo.mutate({
         // Query
         mutation: gql`mutation ($userId: String!, $name: String!,
           $password: String!) {
-          register(userId: $userId, name: $name, password: $password)
+          register(userId: $userId, name: $name, password: $password) {
+            name
+          }
         }`,
         // Parameters
         variables: {
@@ -74,8 +76,8 @@ export default {
         }
       })
 
-      if (result.name) {
-        alert(`Hello, ${result.name}!`)
+      if (data.register) {
+        alert(`Hello, ${data.register.name}!`)
         this.$router.push({ path: '/signin' })
       } else {
         alert('Not registered')
