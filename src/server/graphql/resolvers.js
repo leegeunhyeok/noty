@@ -35,37 +35,28 @@ module.exports = {
       }
       return prisma.user({ id: user.id })
     },
-    userNote: async (_parent, { userId }, ctx) => {
+    userNote: async (_parent, _args, ctx) => {
       if (!ctx.user) {
         throw new Error('Not Authenticated')
       }
 
-      if (ctx.user.id !== userId) {
-        throw new Error('Permission denied')
-      }
-
+      const userId = ctx.user.id
       return await ctx.prisma.user({ userId }).notes()
     },
-    userTag: async (_parent, { userId }, ctx) => {
+    userTag: async (_parent, _args, ctx) => {
       if (!ctx.user) {
         throw new Error('Not Authenticated')
       }
 
-      if (ctx.user.id !== userId) {
-        throw new Error('Permission denied')
-      }
-
+      const userId = ctx.user.id
       return await ctx.prisma.user({ userId }).tags()
     },
-    userTodo: async (_parent, { userId }, ctx) => {
+    userTodo: async (_parent, _args, ctx) => {
       if (!ctx.user) {
         throw new Error('Not Authenticated')
       }
 
-      if (ctx.user.id !== userId) {
-        throw new Error('Permission denied')
-      }
-
+      const userId = ctx.user.id
       return await ctx.prisma.user({ userId }).todos()
     }
   },

@@ -1,8 +1,8 @@
 type Query {
   currentUser: User!
-  userNote(userId: String!): [Note!]
-  userTag(userId: String!): [Tag!]
-  userTodo(userId: String!): [Todo!]
+  userNote: [Note!]
+  userTag: [Tag!]
+  userTodo: [Todo!]
 }
 
 type Mutation {
