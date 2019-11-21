@@ -72,6 +72,7 @@ export default {
           token: data.login.token,
           userId: data.login.user.id
         })
+        this.$router.push({ path: '/note' })
       } else {
         alert('Check your account')
       }
