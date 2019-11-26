@@ -4,7 +4,7 @@
   >
     <span :style="{ backgroundColor: color }"></span>
     {{ name }}
-    <div class="close">x</div>
+    <div class="close"></div>
   </div>
 </template>
 
@@ -49,6 +49,10 @@ export default {
     right: 16px;
     color: $fgTeriary;
     font-weight: bold;
+
+    &::before {
+      content: 'x';
+    }
   }
 }
 </style>
