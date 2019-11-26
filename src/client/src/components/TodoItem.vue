@@ -1,10 +1,14 @@
 <template>
-  <div class="todo-item">
+  <div class="todo-item"
+    :class="{ done }"
+  >
     <span class="todo-item__checkbox"
       :class="{ done }"
     ></span>
     {{ content }}
-    <div class="close"></div>
+    <span class="todo-item__tag"
+      :style="{ backgroundColor: tag.color }"
+    ></span>
   </div>
 </template>
 
@@ -45,11 +49,11 @@ export default {
   &__checkbox {
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 8px;
+    left: 8px;
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background-color: $bgTertiary;
 
@@ -62,27 +66,18 @@ export default {
     }
   }
 
-  span {
+  &__tag {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 15px;
+    right: 15px;
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
   }
 
-  .close {
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 16px;
-    color: $fgTeriary;
-    font-weight: bold;
-
-    &::before {
-      content: 'x';
-    }
+  &.done {
+    text-decoration: line-through;
   }
 }
 </style>
