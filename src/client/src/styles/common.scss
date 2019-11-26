@@ -23,7 +23,9 @@ $separator: #cfd3dd;
 }
 
 @mixin page {
-  background-color: $bgSecondary;
+  background-color: $bgPrimary;
+  padding: 20px;
+  padding-top: 180px;
 }
 
 * {
