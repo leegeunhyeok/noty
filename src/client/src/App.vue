@@ -55,5 +55,6 @@ export default {
 
 #app {
   @extend .wh-100;
+  background-color: $bgPrimary;
 }
 </style>
