@@ -44,37 +44,32 @@ export default {
         return
       }
 
-      const { data } = await this.$apollo.mutate({
-        // Query
-        mutation: gql`mutation ($userId: String!, $password: String!) {
-          login(userId: $userId, password: $password) {
-            token,
-            user {
-              id
+      try {
+        const { data } = await this.$apollo.mutate({
+          // Query
+          mutation: gql`mutation ($userId: String!, $password: String!) {
+            login(userId: $userId, password: $password) {
+              token,
+              user {
+                id
+              }
             }
+          }`,
+          // Parameters
+          variables: {
+            userId: id,
+            password
           }
-        }`,
-        // Parameters
-        variables: {
-          userId: id,
-          password
-        }
-      })
+        })
 
-      /*
-        type LoginResponse {
-          token: String!
-          user: User!
-        }
-       */
-      if (data.login) {
         this.$store.commit('LOGIN', {
           token: data.login.token,
           userId: data.login.user.id
         })
         this.$router.push({ path: '/note' })
-      } else {
-        alert('Check your account')
+      } catch (e) {
+        console.error(e)
+        alert(e.message)
       }
     }
   }
