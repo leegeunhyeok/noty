@@ -98,8 +98,9 @@ export default {
   padding: 10px;
 
   &__content {
-    @extend .wh-100;
     position: relative;
+    width: 100%;
+    height: calc(100% - 80px);
 
     div {
       outline: none;
