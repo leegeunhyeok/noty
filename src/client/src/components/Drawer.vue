@@ -49,6 +49,7 @@ export default {
   width: 100%;
   height: calc(100% - 90px);
   background-color: $bgSecondary;
+  z-index: 200;
 
   &__menu {
     cursor: pointer;

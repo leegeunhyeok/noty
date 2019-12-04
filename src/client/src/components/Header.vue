@@ -36,6 +36,7 @@ export default {
   padding: 30px;
   background-color: $bgSecondary;
   border-bottom: 1px solid $separator;
+  z-index: 100;
 
   &__title {
     color: $tint;
