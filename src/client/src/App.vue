@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <transition name="header" mode="out-in">
-      <Header :title="headerTitle" v-show="showHeader"/>
+      <Header @drawer="showDrawer = !showDrawer"
+        :title="headerTitle" v-show="showHeader"
+      />
     </transition>
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
-    <transition>
-      <Drawer v-show="showDrawer"/>
+    <transition name="fade" mode="out-in">
+      <Drawer @menu="changeMenu" @logout="logout" v-show="showDrawer"/>
     </transition>
   </div>
 </template>
@@ -25,8 +27,8 @@ export default {
   data () {
     return {
       showHeader: false,
-      headerTitle: 'Header',
-      showDrawer: true
+      headerTitle: '',
+      showDrawer: false
     }
   },
   watch: {
@@ -36,6 +38,22 @@ export default {
       },
       deep: true,
       immediate: true
+    }
+  },
+  mounted () {
+    this.setHeaderTitle(this.$route.name)
+  },
+  methods: {
+    setHeaderTitle (text) {
+      this.headerTitle = text.charAt(0).toUpperCase() + text.slice(1)
+    },
+    changeMenu ($event) {
+      this.setHeaderTitle($event)
+      this.$router.push({ path: '/' + $event })
+    },
+    logout () {
+      this.$store.commit('LOGOUT')
+      this.$router.push({ path: '/signin' })
     }
   }
 }

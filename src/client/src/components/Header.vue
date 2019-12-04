@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header__title">{{ title }}</div>
-    <div class="header__menu">
+    <div class="header__menu" @click="$emit('drawer')">
       <div class="header__menu__row">
         <span></span>
         <span></span>
