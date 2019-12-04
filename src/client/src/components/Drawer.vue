@@ -1,16 +1,26 @@
 <template>
   <div class="drawer">
-    <div class="drawer__menu">Note</div>
-    <div class="drawer__menu">Todo</div>
-    <div class="drawer__menu">Tag</div>
-    <div class="drawer__menu">Setting</div>
+    <div class="drawer__menu" v-show="!isActivate('note')">Note</div>
+    <div class="drawer__menu" v-show="!isActivate('todo')">Todo</div>
+    <div class="drawer__menu" v-show="!isActivate('tag')">Tag</div>
+    <div class="drawer__menu" v-show="!isActivate('setting')">Setting</div>
     <div class="drawer__logout">Logout</div>
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'drawer',
+  computed: {
+    currentMenu () {
+      return this.$route.name
+    }
+  },
+  methods: {
+    isActivate (name) {
+      return this.currentMenu === name
+    }
+  }
 }
 </script>
 
