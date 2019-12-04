@@ -50,6 +50,7 @@ export default {
     changeMenu ($event) {
       this.setHeaderTitle($event)
       this.$router.push({ path: '/' + $event })
+      this.showDrawer = false
     },
     logout () {
       this.$store.commit('LOGOUT')
