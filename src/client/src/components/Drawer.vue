@@ -1,10 +1,18 @@
 <template>
   <div class="drawer">
-    <div class="drawer__menu" v-show="!isActivate('note')">Note</div>
-    <div class="drawer__menu" v-show="!isActivate('todo')">Todo</div>
-    <div class="drawer__menu" v-show="!isActivate('tag')">Tag</div>
-    <div class="drawer__menu" v-show="!isActivate('setting')">Setting</div>
-    <div class="drawer__logout">Logout</div>
+    <div class="drawer__menu" @click="onMenu('note')"
+      v-show="!isActivate('note')"
+    >Note</div>
+    <div class="drawer__menu" @click="onMenu('todo')"
+      v-show="!isActivate('todo')"
+    >Todo</div>
+    <div class="drawer__menu" @click="onMenu('tag')"
+      v-show="!isActivate('tag')"
+    >Tag</div>
+    <div class="drawer__menu" @click="onMenu('setting')"
+      v-show="!isActivate('setting')"
+    >Setting</div>
+    <div class="drawer__logout" @click="$emit('logout')">Logout</div>
   </div>
 </template>
 
@@ -19,6 +27,9 @@ export default {
   methods: {
     isActivate (name) {
       return this.currentMenu === name
+    },
+    onMenu (name) {
+      this.$emit('menu', name)
     }
   }
 }
