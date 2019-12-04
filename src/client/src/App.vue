@@ -1,27 +1,33 @@
 <template>
   <div id="app">
     <transition name="header" mode="out-in">
-      <Header :title="headerTitle" v-if="showHeader"/>
+      <Header :title="headerTitle" v-show="showHeader"/>
     </transition>
     <transition name="fade" mode="out-in">
       <router-view/>
+    </transition>
+    <transition>
+      <Drawer v-show="showDrawer"/>
     </transition>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
+import Drawer from '@/components/Drawer'
 import gql from 'graphql-tag'
 
 export default {
   name: 'app',
   components: {
-    Header
+    Header,
+    Drawer
   },
   data () {
     return {
       showHeader: false,
-      headerTitle: 'Header'
+      headerTitle: 'Header',
+      showDrawer: true
     }
   },
   watch: {
