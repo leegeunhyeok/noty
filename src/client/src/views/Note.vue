@@ -1,23 +1,29 @@
 <template>
   <div class="note">
     <ControlButton @click="addNote"/>
+    <transition name="fade" mode="out-in">
+      <NoteEdit @save="noteSave" @close="showEdit = false" v-if="showEdit"/>
+    </transition>
   </div>
 </template>
 
 <script>
+import NoteEdit from '@/components/NoteEdit'
 import ControlButton from '@/components/ControlButton'
 import gql from 'graphql-tag'
 
 export default {
   name: 'note',
   components: {
+    NoteEdit,
     ControlButton
   },
   data () {
     return {
       page: 1,
       notes: [],
-      isLastPage: false
+      isLastPage: false,
+      showEdit: false
     }
   },
   created () {
@@ -41,7 +47,10 @@ export default {
       this.notes = this.notes.concat(data.userNote)
     },
     addNote () {
-      console.log('Add!')
+      this.showEdit = true
+    },
+    noteSave ($event) {
+      console.log($event)
     }
   }
 }

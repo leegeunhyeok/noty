@@ -1,6 +1,10 @@
 <template>
   <div class="editor">
     <EditorContent class="editor__content" :editor="editor"/>
+    <div class="editor__menu">
+      <div class="editor__menu__item" @click="$emit('close')">Cancle</div>
+      <div class="editor__menu__item" @click="save">Save</div>
+    </div>
   </div>
 </template>
 
@@ -30,6 +34,7 @@ export default {
   },
   data () {
     return {
+      html: '',
       editor: new Editor({
         extensions: [
           new Blockquote(),
@@ -46,7 +51,10 @@ export default {
           new Italic(),
           new Link(),
           new History()
-        ]
+        ],
+        onUpdate: ({ getHTML }) => {
+          this.html = getHTML()
+        }
       })
     }
   },
@@ -64,6 +72,9 @@ export default {
     },
     onMenu (name) {
       this.$emit('menu', name)
+    },
+    save () {
+      this.$emit('save', this.html)
     }
   }
 }
@@ -88,6 +99,7 @@ export default {
 
   &__content {
     @extend .wh-100;
+    position: relative;
 
     div {
       outline: none;
@@ -105,6 +117,28 @@ export default {
           background: rgba(0, 0, 0, .1);
           color: rgba(0, 0, 0, .8);
         }
+      }
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+
+    &__item {
+      cursor: pointer;
+      color: $tint;
+      padding: 10px 30px;
+      font-size: 1.5rem;
+
+      &:hover {
+        color: darken($tint, 10%);
       }
     }
   }
