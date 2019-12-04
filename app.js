@@ -31,7 +31,7 @@ const PORT = config.get('port')
 
 // 예기치 못한 예외 핸들링
 process.on('uncaughtException', err => {
-	log.critical('uncaughtException', err)
+  log.critical('uncaughtException', err)
 })
 
 // Noty 서버 인스턴스 생성
