@@ -1,15 +1,16 @@
 <template>
   <div class="tag">
-    <TagItem v-for="({ name, color }, i) in tags"
+    <TagItem v-for="{ id, name, color } in tags"
       :name="name"
       :color="color"
-      :key="i"
+      :key="id"
     />
   </div>
 </template>
 
 <script>
 import TagItem from '@/components/TagItem'
+import gql from 'graphql-tag'
 
 export default {
   name: 'tag',
@@ -25,13 +26,19 @@ export default {
     this.getTags()
   },
   methods: {
-    getTags () {
-      // TODO: GraphQL 요청
-      this.tags = [
-        { name: 'Red', color: 'tomato' },
-        { name: 'Yellow', color: '#ffdb58' },
-        { name: 'Blue', color: 'dodgerblue' }
-      ]
+    async getTags () {
+      const { data } = await this.$apollo.mutate({
+        // Query
+        mutation: gql`query {
+          userTag {
+            id
+            name
+            color
+          }
+        }`
+      })
+
+      this.tags = data.userTag
     }
   }
 }
