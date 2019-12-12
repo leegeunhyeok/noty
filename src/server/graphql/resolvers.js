@@ -90,6 +90,35 @@ module.exports = {
         password: hashedPassword,
         grade: 'DEFAULT_USER'
       })
+
+      const defaultTags = [
+        {
+          name: 'Red',
+          color: '#fe583e'
+        },
+        {
+          name: 'Yellow',
+          color: '#ffd64e'
+        },
+        {
+          name: 'Blue',
+          color: '#1a85ff'
+        }
+      ]
+
+      try {
+        for (let { name, color } of defaultTags) {
+          await ctx.prisma.createTag({
+            name,
+            color,
+            user: {
+              connect: {
+                id: ctx.user.id
+              }
+            }
+          })
+        }
+      } catch (e) {}
       return user
     },
     login: async (_parent, { userId, password }, ctx) => {
