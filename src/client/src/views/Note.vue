@@ -1,13 +1,13 @@
 <template>
   <div class="note">
     <div class="note__list">
-      <div class="note__list__item" v-for="note in notes"
+      <NoteItem v-for="note in notes"
+        :title="note.title"
+        :content="note.content"
+        :createdAt="note.createdAt"
+        :updatedAt="note.updatedAt"
         :key="note.id"
-      >
-        <h1>{{ note.title }}</h1>
-        <time>{{ date(note.createdAt) }}</time>
-        <p v-html="note.content"></p>
-      </div>
+      />
     </div>
     <ControlButton @click="addNote"/>
     <transition name="fade" mode="out-in">
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import NoteItem from '@/components/NoteItem'
 import NoteEdit from '@/components/NoteEdit'
 import ControlButton from '@/components/ControlButton'
 import gql from 'graphql-tag'
@@ -24,6 +25,7 @@ import gql from 'graphql-tag'
 export default {
   name: 'note',
   components: {
+    NoteItem,
     NoteEdit,
     ControlButton
   },
@@ -77,26 +79,7 @@ export default {
       })
 
       this.notes.unshift(data.createNote)
-    },
-    numberPadding (n, length) {
-      const sN = n.toString()
-      if (sN.length >= length) {
-        return sN
-      } else {
-        let p = ''
-        for (let i = 0; i < length - sN.length; i++) {
-          p += '0'
-        }
-        return p + sN
-      }
-    },
-    date (target) {
-      const $ = new Date(target)
-      const y = $.getFullYear()
-      const m = this.numberPadding($.getMonth() + 1, 2)
-      const d = this.numberPadding($.getDate(), 2)
-
-      return `${y}.${m}.${d}`
+      this.showEdit = false
     }
   }
 }
@@ -108,35 +91,5 @@ export default {
 .note {
   @include page;
   overflow-y: auto;
-
-  &__list {
-    &__item {
-      padding: 10px 30px;
-      border-radius: 5px;
-      background-color: $bgSecondary;
-      margin-bottom: 20px;
-
-      h1 {
-        margin-bottom: 0;
-      }
-
-      time {
-        color: $fgTertiary;
-      }
-
-      p {
-        color: $fgTertiary;
-      }
-
-      code {
-        display: inline-block;
-        padding: 0 .4rem;
-        border-radius: 5px;
-        font-weight: 700;
-        background: $bgTertiary;
-        color: $fgTertiary;
-      }
-    }
-  }
 }
 </style>
