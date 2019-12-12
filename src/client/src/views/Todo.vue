@@ -94,14 +94,14 @@ export default {
 
       &__item {
         cursor: pointer;
-        color: $fgTeriary;
+        color: $fgTertiary;
         font-weight: bold;
         font-size: 1rem;
         float: left;
         margin-right: 16px;
 
         &:hover {
-          color: darken($fgTeriary, 10%);
+          color: darken($fgTertiary, 10%);
         }
 
         &.active {
