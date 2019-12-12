@@ -40,24 +40,33 @@ module.exports = {
         throw new Error('Not Authenticated')
       }
 
-      const userId = ctx.user.id
-      return await ctx.prisma.user({ userId }).notes()
+      const notes = await ctx.prisma.user({
+        id: ctx.user.id
+      }).notes()
+
+      return notes
     },
     userTag: async (_parent, _args, ctx) => {
       if (!ctx.user) {
         throw new Error('Not Authenticated')
       }
 
-      const userId = ctx.user.id
-      return await ctx.prisma.user({ userId }).tags()
+      const tags = await ctx.prisma.user({
+        id: ctx.user.id
+      }).tags()
+
+      return tags
     },
     userTodo: async (_parent, _args, ctx) => {
       if (!ctx.user) {
         throw new Error('Not Authenticated')
       }
 
-      const userId = ctx.user.id
-      return await ctx.prisma.user({ userId }).todos()
+      const todos = await ctx.prisma.user({
+        id: ctx.user.id
+      }).todos()
+
+      return todos
     }
   },
   Mutation: {
@@ -86,18 +95,18 @@ module.exports = {
     login: async (_parent, { userId, password }, ctx) => {
       // Find user by userId
       const user = await ctx.prisma.user({ userId })
-    
+
       if (!user) {
         throw new Error('Invalid Login')
       }
-      
+
       // Password compare
       const passwordMatch = await bcrypt.compare(password, user.password)
-    
+
       if (!passwordMatch) {
         throw new Error('Invalid Login')
       }
-    
+
       // Token issuance
       const token = jwt.sign({
         id: user.id,
@@ -152,7 +161,7 @@ module.exports = {
       const note = await ctx.prisma.deleteNote({
         id: noteId
       })
-      
+
       return !!note
     },
     createTag: async (_parent, { name, color }, ctx) => {
@@ -197,7 +206,7 @@ module.exports = {
       const tag = await ctx.prisma.deleteTag({
         id: tagId
       })
-      
+
       return !!tag
     },
     createTodo: async (_parent, { content, tagId }, ctx) => {
@@ -262,7 +271,7 @@ module.exports = {
       const todo = await ctx.prisma.deleteTodo({
         id: todoId
       })
-      
+
       return !!todo
     }
   },
