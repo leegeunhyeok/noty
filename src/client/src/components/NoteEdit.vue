@@ -1,5 +1,8 @@
 <template>
   <div class="editor">
+    <div class="editor__title">
+      <input v-model="title" placeholder="Title">
+    </div>
     <EditorContent class="editor__content" :editor="editor"/>
     <div class="editor__menu">
       <div class="editor__menu__item" @click="$emit('close')">Cancle</div>
@@ -34,6 +37,7 @@ export default {
   },
   data () {
     return {
+      title: '',
       html: '',
       editor: new Editor({
         extensions: [
@@ -74,7 +78,10 @@ export default {
       this.$emit('menu', name)
     },
     save () {
-      this.$emit('save', this.html)
+      this.$emit('save', {
+        title: this.title,
+        content: this.html
+      })
     }
   }
 }
@@ -97,10 +104,23 @@ export default {
   z-index: 150;
   padding: 10px;
 
+  &__title {
+    margin-bottom: 10px;
+    width: 100%;
+
+    & input {
+      outline: none;
+      width: 100%;
+      border: 2px solid $tint10;
+      border-radius: 5px;
+      padding: 10px 15px;
+    }
+  }
+
   &__content {
     position: relative;
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100% - 150px);
 
     div {
       outline: none;
@@ -115,8 +135,8 @@ export default {
           padding: 0 .4rem;
           border-radius: 5px;
           font-weight: 700;
-          background: rgba(0, 0, 0, .1);
-          color: rgba(0, 0, 0, .8);
+          background: $bgTertiary;
+          color: $fgTertiary;
         }
       }
     }

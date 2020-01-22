@@ -47,7 +47,7 @@ export default {
     position: absolute;
     top: 10px;
     right: 16px;
-    color: $fgTeriary;
+    color: $fgTertiary;
     font-weight: bold;
 
     &::before {

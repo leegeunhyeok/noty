@@ -30,6 +30,8 @@ export default {
   background-color: $tint;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  -webkit-transition: .3s;
+          transition: .3s;
 
   &:hover {
     background-color: darken($tint, 10%);

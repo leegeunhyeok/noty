@@ -7,9 +7,14 @@
         <div class="todo__control__filter__item">Done</div>
       </div>
       <div class="todo__control__tag">
-        <div class="todo__control__tag__selected">All tag</div>
-        <div class="todo__control__tag__dropdown">
-          <div class="dropdown__item active">Red</div>
+        <div class="todo__control__tag__selected"
+          @click="showTagFilter = !showTagFilter"
+        >All tag</div>
+        <div class="todo__control__tag__dropdown"
+          v-show="showTagFilter"
+        >
+          <div class="dropdown__item active">All</div>
+          <div class="dropdown__item">Red</div>
           <div class="dropdown__item">Yellow</div>
           <div class="dropdown__item">Blue</div>
         </div>
@@ -24,20 +29,26 @@
         :key="index"
       />
     </div>
+    <ControlButton @click="addTodo"/>
+
   </div>
 </template>
 
 <script>
 import TodoItem from '@/components/TodoItem'
+import ControlButton from '@/components/ControlButton'
 
 export default {
   name: 'todo',
   components: {
-    TodoItem
+    TodoItem,
+    ControlButton
   },
   data () {
     return {
-      todos: []
+      todos: [],
+      showTagFilter: false,
+      showEdit: false
     }
   },
   created () {
@@ -72,6 +83,9 @@ export default {
           content: 'TODO 3'
         }
       ]
+    },
+    addTodo () {
+      this.showEdit = true
     }
   }
 }
@@ -94,14 +108,14 @@ export default {
 
       &__item {
         cursor: pointer;
-        color: $fgTeriary;
+        color: $fgTertiary;
         font-weight: bold;
         font-size: 1rem;
         float: left;
         margin-right: 16px;
 
         &:hover {
-          color: darken($fgTeriary, 10%);
+          color: darken($fgTertiary, 10%);
         }
 
         &.active {
